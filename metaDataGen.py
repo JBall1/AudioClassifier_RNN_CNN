@@ -1,30 +1,39 @@
 import pandas as pd
 import pathlib
 import os
+import librosa
 
 wavFiles = pathlib.Path.home() /'audioFiles'
+#Change labels 'Scooter' and 'other' and add others as needed.
 
-set_1 = 0
-#Gets all file names in given directory
+
+#gets all file names in dir
 def getFilesInDir(directory):
-   
     files = []
     files = os.listdir(directory)
-    s = sum('scooter' in s for s in files)
-    print(s)
-    
     return files
 
-#File names, sr, labels, length 
 
-fileNames = getFilesInDir(wavFiles)
-sample_rate = ['22050']*len(fileNames)
-#Scooters, others
-label_scooter = ['Scooter']*67
-label_other = ['Other']*(len(fileNames)-67)
-length = [1]*len(fileNames)
+#Count instances of certian type by file name
+def countInst(keyword,arr):
+    s = sum(keyword in s for s in arr)
+    return s
 
-df = pd.DataFrame({'fileName': fileNames, 'sr': sample_rate, 'label': label_other+label_scooter, 'length':length})
-#df.set_index('fileName',inplace=True)
-#print(df)
-df.to_csv('Desktop/Audio Data/a.csv',index=True)
+def getSampleRate(file):
+    X,sr = librosa.load(file)
+    return sr
+
+filesNames = getFilesInDir(wavFiles)
+scooterCounter = countInst('scooter',filesNames)
+otherCounter = countInst('other',filesNames)
+
+sample_rate = ['22050']*len(filesNames)
+label_scooter = ['Scooter']*scooterCounter
+label_other = ['Other']*otherCounter
+label = label_scooter + label_other
+length = [1]*len(filesNames)
+
+
+
+df = pd.DataFrame({'filename':filesNames, 'sr':sample_rate, 'label': label, 'length': length})
+df.to_csv('metadata.csv',index=True)
