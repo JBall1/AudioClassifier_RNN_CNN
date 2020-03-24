@@ -27,10 +27,6 @@ from sklearn.utils.class_weight import compute_class_weight
 from keras.utils import to_categorical
 from keras.layers import Dense, Flatten, LSTM, Conv2D, MaxPooling2D, Dropout, TimeDistributed
 
-
-
-All = pathlib.Path.home() / 'audioFiles' 
-
 class Config:
     def __init__(self,mode='conv',nfilt=26,nfeat=13,nfft=551,rate=22050):
         self.mode = mode
