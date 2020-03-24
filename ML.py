@@ -29,7 +29,7 @@ from keras.layers import Dense, Flatten, LSTM, Conv2D, MaxPooling2D, Dropout, Ti
 
 
 
-All = pathlib.Path.home() / 'panotti' / 'ALL'#for subset
+All = pathlib.Path.home() / 'audioFiles' 
 
 class Config:
     def __init__(self,mode='conv',nfilt=26,nfeat=13,nfft=551,rate=22050):
@@ -48,7 +48,7 @@ def build_rand_feat():
     for _ in tqdm(range(n_samples)):
         rand_class = np.random.choice(class_dist.index, p = prob_dist)
         file = np.random.choice(df[df.label==rand_class].index)
-        rate, wav = wavfile.read('panotti/ALL/' + file)
+        rate, wav = wavfile.read('audioFiles/' + file)
         label = df.at[file,'label']
         rand_index = np.random.randint(0,wav.shape[0]-config.step)
         sample = wav[rand_index:rand_index+config.step]
@@ -99,7 +99,7 @@ def get_recurrent_model():
 
 
 
-df = pd.read_csv('panotti/master.csv')
+df = pd.read_csv('master.csv')
 df.set_index('fname',inplace=True)
 classes = list(np.unique(df.label))
 class_dist = df.groupby(['label'])['length'].mean()
