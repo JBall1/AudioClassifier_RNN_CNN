@@ -2,7 +2,7 @@ import pandas as pd
 import pathlib
 import os
 
-wavFiles = pathlib.Path.home() /'Desktop' / 'Audio Data' / 'wavfiles'
+wavFiles = pathlib.Path.home() /'audioFiles'
 
 set_1 = 0
 #Gets all file names in given directory
