@@ -122,6 +122,6 @@ elif config.mode == 'time':
 
 class_weight = compute_class_weight('balanced',np.unique(y_flat),y_flat)
 
-checkpoint = ModelCheckpoint("models/LSTM/a.model",monitor='val_acc',verbose=1,mode='max',save_best_only=True,save_weights_only=False,period=1)
+checkpoint = ModelCheckpoint("models/newModel.model",monitor='val_acc',verbose=1,mode='max',save_best_only=True,save_weights_only=False,period=1)
 
 model.fit(X,y,epochs=10, batch_size=32,shuffle=True,validation_split=0.1,callbacks=[checkpoint])
