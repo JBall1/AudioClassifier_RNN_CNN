@@ -6,6 +6,8 @@ import librosa
 wavFiles = pathlib.Path.home() /'audioFiles'
 #Change labels 'Scooter' and 'other' and add others as needed.
 #sample rate set to 22050 from preprocessing, change as needed and get sample rate with getSampleRate func.
+samplerate = '22050'
+
 
 #gets all file names in dir
 def getFilesInDir(directory):
@@ -27,7 +29,7 @@ filesNames = getFilesInDir(wavFiles)
 scooterCounter = countInst('scooter',filesNames)
 otherCounter = countInst('other',filesNames)
 
-sample_rate = ['22050']*len(filesNames)
+sample_rate = [samplerate']*len(filesNames)
 label_scooter = ['Scooter']*scooterCounter
 label_other = ['Other']*otherCounter
 label = label_scooter + label_other
