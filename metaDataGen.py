@@ -3,7 +3,7 @@ import pathlib
 import os
 import librosa
 
-wavFiles = pathlib.Path.home() /'audioFiles'
+wavFiles ='audioFiles/'
 #Change labels 'Scooter' and 'other' and add others as needed.
 #sample rate set to 22050 from preprocessing, change as needed and get sample rate with getSampleRate func.
 samplerate = '22050'
