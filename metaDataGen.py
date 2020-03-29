@@ -29,7 +29,7 @@ filesNames = getFilesInDir(wavFiles)
 scooterCounter = countInst('scooter',filesNames)
 otherCounter = countInst('other',filesNames)
 
-sample_rate = [samplerate']*len(filesNames)
+sample_rate = ['samplerate']*len(filesNames)
 label_scooter = ['Scooter']*scooterCounter
 label_other = ['Other']*otherCounter
 label = label_scooter + label_other
@@ -37,5 +37,5 @@ length = [1]*len(filesNames)
 
 
 
-df = pd.DataFrame({'filename':filesNames, 'sr':sample_rate, 'label': label, 'length': length})
+df = pd.DataFrame({'fname':filesNames, 'sr':sample_rate, 'label': label, 'length': length})
 df.to_csv('metadata.csv',index=True)
