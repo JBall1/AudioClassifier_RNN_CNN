@@ -95,7 +95,7 @@ def get_recurrent_model():
 
 
 
-df = pd.read_csv('master.csv')
+df = pd.read_csv('metadata.csv')
 df.set_index('fname',inplace=True)
 classes = list(np.unique(df.label))
 class_dist = df.groupby(['label'])['length'].mean()
